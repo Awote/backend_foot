@@ -32,5 +32,13 @@ def user_info(request):
     data = serializers.serialize('json', User.objects.filter(username=user), fields=('username','email','age','shoe_size',"first_name"))
 
     return Response(status=200,data=json.loads(data)[0].get("fields"))
+@api_view(['GET'])
+def auth(request):
+    user = json.loads(request.body)
+    correct_auth = User.objects.filter(username= user.get('username'),password= user.get('password')).exists()
+    if correct_auth :
+        return Response(status = 200)
+    else:
+        return Response(status=404)
 
     
