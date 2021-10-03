@@ -19,5 +19,6 @@ from user.views import*
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('reg/',create_user),
-    path('user_info/',user_info)
+    path('user_info/',user_info),
+    path('auth/',auth)
 ]
